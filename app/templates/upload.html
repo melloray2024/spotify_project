@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% block content %}
+<section class="panel narrow">
+  <div class="panel-head">
+    <h3>Upload a Spotify CSV</h3>
+    <p>Use a Kaggle export or any CSV with the expected audio-feature columns.</p>
+  </div>
+  <form class="upload-form" method="post" enctype="multipart/form-data">
+    <input type="file" name="dataset" accept=".csv">
+    <button class="btn primary" type="submit">Upload</button>
+  </form>
+  <p class="helper">Expected columns: popularity, danceability, energy, loudness, speechiness, acousticness, instrumentalness, liveness, valence, tempo.</p>
+</section>
+{% endblock %}

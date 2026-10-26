@@ -1,0 +1,11 @@
+title,uploader,url,notes
+Spotify Audio Features,tomigelo,https://www.kaggle.com/datasets/tomigelo/spotify-audio-features,Audio features for 130k tracks collected from the official Spotify Web API.
+Spotify Music Dataset,solomonameh,https://www.kaggle.com/datasets/solomonameh/spotify-music-dataset,Popular and non-popular songs with audio and metadata features.
+Spotify Tracks Dataset | Audio Features,saichaitanyareddyai,https://www.kaggle.com/datasets/saichaitanyareddyai/spotify-tracks-dataset-audio-features,114k Spotify tracks spanning 114 genres.
+Spotify Song Attributes Dataset,byomokeshsenapati,https://www.kaggle.com/datasets/byomokeshsenapati/spotify-song-attributes,Spotify streaming-history style audio feature dataset.
+Spotify Tracks Genre,thedevastator,https://www.kaggle.com/datasets/thedevastator/spotify-tracks-genre-dataset,"Track-level features including danceability, energy and loudness."
+Spotify Tracks Attributes and Popularity,melissamonfared,https://www.kaggle.com/datasets/melissamonfared/spotify-tracks-attributes-and-popularity,Track metadata and audio analysis for Spotify songs.
+Audio features and lyrics of Spotify songs,imuhammad,https://www.kaggle.com/datasets/imuhammad/audio-features-and-lyrics-of-spotify-songs,"18k Spotify songs with lyrics, audio features and language."
+"Spotify Dataset 1921-2020, 600k+ Tracks",yamaerenay,https://www.kaggle.com/datasets/yamaerenay/spotify-dataset-19212020-600k-tracks,Large Spotify dataset with audio features and popularity metrics.
+"550K Spotify Songs: Audio, Lyrics & Genres",serkantysz,https://www.kaggle.com/datasets/serkantysz/550k-spotify-songs-audio-lyrics-and-genres,"Large reconstructed music dataset with audio features, lyrics and genres."
+Spotify Data Science Challenge,bfh-spotify-challenge,https://www.kaggle.com/competitions/bfh-spotify-challenge/data,Kaggle competition data with song features and popularity target.

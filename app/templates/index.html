@@ -1,0 +1,105 @@
+{% extends "base.html" %}
+{% block content %}
+<section class="hero">
+  <div>
+    <span class="eyebrow">Artist deep dive inspired dashboard</span>
+    <h2>Spotify song popularity prediction</h2>
+    <p>This Flask app follows the proposal workflow: inspect the data, explore audio-feature patterns, and evaluate a basic regression model.</p>
+    <div class="hero-actions">
+      <a class="btn primary" href="{{ url_for('datasets') }}">View dataset library</a>
+      <a class="btn" href="{{ url_for('upload') }}">Upload CSV</a>
+    </div>
+  </div>
+  <div class="hero-card">
+    <div class="metric">
+      <span>Data source</span>
+      <strong>{{ data_source }}</strong>
+    </div>
+    <div class="metric-grid">
+      <div><span>Rows</span><strong>{{ summary.rows }}</strong></div>
+      <div><span>Columns</span><strong>{{ summary.columns }}</strong></div>
+      <div><span>Missing</span><strong>{{ summary.missing_values }}</strong></div>
+      <div><span>Duplicates</span><strong>{{ summary.duplicate_rows }}</strong></div>
+    </div>
+  </div>
+</section>
+
+<section class="cards">
+  <div class="stat-card">
+    <span>Popularity mean</span>
+    <strong>{{ summary.target_mean if summary.target_mean is not none else "N/A" }}</strong>
+  </div>
+  <div class="stat-card">
+    <span>Baseline MAE</span>
+    <strong>{{ model.baseline_mae if model.baseline_mae is not none else "N/A" }}</strong>
+  </div>
+  <div class="stat-card">
+    <span>Model MAE</span>
+    <strong>{{ model.mae if model.mae is not none else "N/A" }}</strong>
+  </div>
+  <div class="stat-card">
+    <span>Model R²</span>
+    <strong>{{ model.r2 if model.r2 is not none else "N/A" }}</strong>
+  </div>
+</section>
+
+<section class="panel">
+  <div class="panel-head">
+    <h3>Visualization snapshots</h3>
+    <p>Generated from the loaded dataset.</p>
+  </div>
+  <div class="plot-grid">
+    {% if plots.histogram %}<img src="{{ url_for('static', filename=plots.histogram) }}" alt="Histogram">{% endif %}
+    {% if plots.heatmap %}<img src="{{ url_for('static', filename=plots.heatmap) }}" alt="Heatmap">{% endif %}
+    {% if plots.scatter %}<img src="{{ url_for('static', filename=plots.scatter) }}" alt="Scatter">{% endif %}
+  </div>
+</section>
+
+<section class="panel">
+  <div class="panel-head">
+    <h3>Feature importance</h3>
+    <p>Linear-regression coefficients on the selected audio features.</p>
+  </div>
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>Feature</th><th>Coefficient</th></tr></thead>
+      <tbody>
+        {% for row in model.feature_importance[:9] %}
+        <tr><td>{{ row.feature }}</td><td>{{ row.coefficient }}</td></tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<section class="panel">
+  <div class="panel-head">
+    <h3>Predict popularity</h3>
+    <p>Enter audio values between 0 and 1 except loudness and tempo.</p>
+  </div>
+  <form class="predict-form" method="post" action="{{ url_for('predict') }}">
+    {% for feature in features %}
+      <label>
+        <span>{{ feature }}</span>
+        <input type="number" step="0.01" name="{{ feature }}" value="{{ 0.5 if feature != 'loudness' and feature != 'tempo' else ( -10 if feature == 'loudness' else 120 ) }}">
+      </label>
+    {% endfor %}
+    <button class="btn primary" type="submit">Predict popularity</button>
+  </form>
+</section>
+
+<section class="panel">
+  <div class="panel-head">
+    <h3>Available Kaggle sources</h3>
+    <p>Ten Spotify datasets included in the project manifest.</p>
+  </div>
+  <div class="dataset-mini-grid">
+    {% for d in datasets[:6] %}
+      <div class="mini-card">
+        <strong>{{ d.title }}</strong>
+        <p>{{ d.uploader }}</p>
+      </div>
+    {% endfor %}
+  </div>
+</section>
+{% endblock %}

@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% block content %}
+<section class="panel narrow">
+  <div class="panel-head">
+    <h3>Prediction result</h3>
+    <p>Estimated popularity from the current linear-regression model.</p>
+  </div>
+  <div class="prediction-box">
+    <strong>{{ prediction.prediction }}/100</strong>
+    <p>The model returns an approximate popularity score based on the entered audio features.</p>
+  </div>
+  <a class="btn" href="{{ url_for('index') }}">Back to dashboard</a>
+</section>
+{% endblock %}

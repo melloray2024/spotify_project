@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% block content %}
+<section class="panel">
+  <div class="panel-head">
+    <h3>Kaggle dataset library</h3>
+    <p>Manifest of Spotify-related Kaggle sources used by the project.</p>
+  </div>
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>Title</th><th>Uploader</th><th>Notes</th><th>Link</th></tr></thead>
+      <tbody>
+        {% for d in datasets %}
+        <tr>
+          <td>{{ d.title }}</td>
+          <td>{{ d.uploader }}</td>
+          <td>{{ d.notes }}</td>
+          <td><a href="{{ d.url }}" target="_blank">Open</a></td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</section>
+{% endblock %}
